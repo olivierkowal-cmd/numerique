@@ -1,0 +1,49 @@
+/* Le Bureau (office.js) : salle en pixel art + bandeau global dans la barre latérale. */
+.office-canvas {
+  display: block; image-rendering: pixelated; image-rendering: crisp-edges; image-rendering: -moz-crisp-edges;
+  max-width: 100%;
+}
+.office-wrap { display: grid; gap: var(--sp-3, 12px); }
+.office-stage {
+  display: flex; justify-content: center; padding: var(--sp-3, 12px);
+  background: var(--surface-2, #f1effa); border: 1px solid var(--border, #e3e0f2); border-radius: var(--r-lg, 18px);
+  box-shadow: var(--shadow-2, 0 4px 14px rgba(48, 36, 120, .08));
+}
+.office-room-canvas { border-radius: 6px; cursor: pointer; outline-offset: 4px; }
+.office-room-canvas:focus-visible { outline: 3px solid var(--focus, #6c57f2); }
+.office-agents { display: flex; flex-wrap: wrap; gap: var(--sp-2, 8px); }
+.office-agent-btn { font-size: .85rem; }
+.office-log {
+  list-style: none; margin: 0; padding: var(--sp-3, 12px) var(--sp-4, 16px); min-height: 3.2em;
+  background: var(--surface, #fff); border: 1px dashed var(--border-strong, #cfc9e8); border-radius: var(--r-md, 12px);
+  font-size: .85rem; color: var(--text-2, #4d4872); display: grid; gap: 4px;
+}
+.office-log li::before { content: "› "; color: var(--primary, #5a43e0); font-weight: 700; }
+
+/* Bandeau global : fixé en bas de la barre latérale (bureau) ; discret au-dessus de la barre du bas (mobile). */
+.office-strip { display: none; }
+.office-strip-link { display: block; text-decoration: none; line-height: 0; border-radius: 8px; overflow: hidden; }
+.office-strip-link:focus-visible { outline: 3px solid var(--focus, #6c57f2); outline-offset: 2px; }
+.office-strip-canvas { border-radius: 8px; }
+.office-strip-label { margin-top: 4px; font-size: .72rem; line-height: 1.2; color: var(--text-muted, #6b668f); text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+@media (min-width: 900px) {
+  .office-strip {
+    display: block; position: fixed; z-index: 51; left: 0; bottom: 0; width: var(--sidebar-w, 248px);
+    padding: var(--sp-2, 8px) var(--sp-3, 12px) var(--sp-3, 12px); box-sizing: border-box;
+    background: color-mix(in srgb, var(--surface, #fff) 92%, transparent);
+    border-top: 1px solid var(--border, #e3e0f2); border-right: 1px solid var(--border, #e3e0f2);
+  }
+  body.has-office-strip .sidebar { padding-bottom: 128px; }
+}
+@media (max-width: 899.98px) {
+  .office-strip {
+    position: fixed; z-index: 49; left: 8px; bottom: calc(var(--bottombar-h, 64px) + env(safe-area-inset-bottom) + 8px);
+    width: min(320px, calc(100vw - 16px)); padding: 4px; box-sizing: border-box; border-radius: 12px;
+    background: var(--surface, #fff); border: 1px solid var(--border, #e3e0f2); box-shadow: var(--shadow-3, 0 18px 44px rgba(48, 36, 120, .18));
+    pointer-events: none; display: none;
+  }
+  .office-strip.is-working { display: block; }
+}
+.office-strip.is-working .office-strip-label { color: var(--primary, #5a43e0); font-weight: 650; }
+@media print { .office-strip { display: none !important; } }

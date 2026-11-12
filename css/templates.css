@@ -1,0 +1,41 @@
+/* Studio v2 — « Mes matières » (dev-subjects). Utilise les variables de style.css. */
+.sj .sj-h1 { margin: 8px 0 var(--sp-4); }
+.sj-grid { margin-top: var(--sp-4); }
+.sj-tile { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; text-align: left; cursor: pointer; min-height: 48px; font: inherit; color: inherit; transition: transform .15s ease, box-shadow .15s ease; }
+.sj-tile:hover, .sj-tile:focus-visible { transform: translateY(-2px); box-shadow: var(--shadow-md, 0 8px 24px rgba(42, 32, 105, .15)); }
+.sj-tile-icon { font-size: 2rem; line-height: 1; }
+.sj-plan-banner { display: block; width: 100%; text-align: left; cursor: pointer; font: inherit; color: inherit; min-height: 48px; border-left: 6px solid var(--primary); }
+.sj-opts { display: flex; flex-wrap: wrap; gap: var(--sp-4); }
+.sj-check { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; font-weight: 600; cursor: pointer; }
+.sj-check input, .sj-cb { width: 24px; height: 24px; accent-color: var(--primary); flex: none; }
+.sj-actions { flex-wrap: wrap; gap: var(--sp-3); margin-top: var(--sp-3); }
+.sj-samples { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2); }
+.sj textarea { width: 100%; font: inherit; min-height: 140px; }
+.sj input[type="text"], .sj select { width: 100%; min-height: 48px; font: inherit; }
+.sj-preview ul { list-style: none; padding: 0; margin: var(--sp-2) 0; display: flex; flex-direction: column; gap: 6px; }
+.sj-prev-list li { padding: 8px 12px; border-radius: var(--r-sm); background: var(--surface-2); overflow-wrap: anywhere; }
+.sj-skipped li { font-size: .85rem; color: var(--text-muted); }
+.sj-result { border: 2px solid var(--mint, #2fcf9c); }
+.sj-timeline-wrap { overflow-x: auto; padding: var(--sp-2) 0; border-radius: var(--r-md); background: var(--surface-2); }
+.sj-timeline-wrap:focus-visible { outline: 3px solid var(--primary); }
+.sj-timeline { display: block; max-width: none; }
+.sj-timeline .sj-axis { stroke: var(--primary); }
+.sj-timeline .sj-stem { stroke: var(--text-muted); }
+.sj-timeline .sj-dot { fill: var(--coral, #ff6b6b); stroke: var(--surface); stroke-width: 3; }
+.sj-timeline .sj-year { fill: var(--primary); font: 800 14px var(--font, system-ui, sans-serif); }
+.sj-timeline .sj-title { fill: var(--text); font: 600 12.5px var(--font, system-ui, sans-serif); }
+.sj-img-prev { display: flex; align-items: center; gap: var(--sp-2); margin-top: 6px; flex-wrap: wrap; }
+.sj-img-prev img { max-width: 160px; max-height: 120px; border-radius: var(--r-sm); border: 1px solid var(--surface-3); }
+.sj-coach { background: var(--primary-100); color: var(--primary-800); }
+.sj-day-card.is-today { border: 2px solid var(--primary); }
+.sj-day-card.is-past { opacity: .7; }
+.sj-task { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3); min-height: 48px; }
+.sj-task-label { display: flex; align-items: center; gap: 12px; cursor: pointer; flex: 1; min-height: 48px; }
+.sj-cb:checked + span { text-decoration: line-through; opacity: .7; }
+/* images de cartes (flashcards.js) */
+.card-img { display: block; max-width: 100%; max-height: 45%; object-fit: contain; border-radius: var(--r-sm); margin: 0 auto 8px; }
+@media (max-width: 600px) {
+  .sj-task { flex-wrap: wrap; }
+  .sj-actions .btn { flex: 1 1 100%; }
+}
+@media (prefers-reduced-motion: reduce) { .sj-tile { transition: none; } .sj-tile:hover { transform: none; } }

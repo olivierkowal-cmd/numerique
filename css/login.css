@@ -1,0 +1,52 @@
+/* Écran de connexion / chargement : reprise de la mise en page de l'ancien site (autonome, chargée AVANT la connexion). */
+:root { --teal:#1d7f91; --teal-fonce:#145e6c; --teal-clair:#e6f3f6; --encre:#14303a; --gris:#5b6b73; --ligne:#d8e4e8; --fond:#f5f8f9; --blanc:#fff; --ombre:0 2px 10px rgba(20,48,58,.08); }
+html, body { margin: 0; min-height: 100%; }
+body { font-family: Lato, "Segoe UI", Arial, sans-serif; color: var(--encre); background: var(--fond); font-size: 16px; }
+.cache { display: none !important; }
+#ecran-connexion, #ecran-chargement, #ecran-config { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px 16px; box-sizing: border-box;
+  background: linear-gradient(160deg, #e6f3f6 0%, #f5f8f9 55%, #fff7e0 100%); }
+#ecran-connexion *, #ecran-chargement *, #ecran-config * { box-sizing: border-box; }
+.carte-connexion { width: 100%; max-width: 440px; background: var(--blanc); border-radius: 18px; box-shadow: 0 10px 40px rgba(20,48,58,.12); padding: 28px 28px 24px; }
+.carte-connexion .logo { display: block; width: 100%; max-width: 300px; margin: 0 auto 6px; height: auto; }
+.carte-connexion h1 { text-align: center; margin: 4px 0 2px; font-size: 26px; font-weight: 900; line-height: 1.2; }
+.carte-connexion .sous { text-align: center; color: var(--gris); margin: 0 0 18px; }
+.onglets { display: flex; background: var(--teal-clair); border-radius: 12px; padding: 4px; margin-bottom: 18px; }
+.onglets button { flex: 1; border: 0; background: none; padding: 12px 6px; min-height: 48px; border-radius: 9px; cursor: pointer; font: inherit; font-weight: 700; color: var(--teal-fonce); }
+.onglets button.actif { background: var(--blanc); box-shadow: var(--ombre); }
+label.champ { display: block; margin: 0 0 12px; font-weight: 700; font-size: 14px; }
+label.champ input { display: block; width: 100%; margin-top: 5px; padding: 12px; min-height: 48px; border: 1.5px solid var(--ligne); border-radius: 10px; font: inherit; font-weight: 400; background: #fff; color: var(--encre); }
+label.champ input:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(29,127,145,.2); }
+.deux { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+#ecran-connexion .btn, #ecran-chargement .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; border-radius: 10px; padding: 12px 18px; min-height: 48px; font: inherit; font-weight: 700; cursor: pointer; }
+.btn-principal { background: var(--teal); color: #fff; width: 100%; }
+.btn-principal:hover { background: var(--teal-fonce); }
+.btn-principal:disabled { opacity: .6; cursor: wait; }
+.btn-lien { background: none; border: 0; color: var(--teal); cursor: pointer; padding: 12px 6px; min-height: 48px; font: inherit; font-weight: 700; text-decoration: underline; }
+.message { border-radius: 10px; padding: 10px 12px; margin: 0 0 14px; font-size: 14px; line-height: 1.4; }
+.message.erreur { background: #fdecea; color: #8e2a1f; }
+.message.ok { background: #e3f5ec; color: #145c3b; }
+.aide-petite { font-size: 13px; color: var(--gris); margin: -4px 0 14px; }
+.centre { text-align: center; }
+.rond { width: 42px; height: 42px; margin: 8px auto 14px; border: 4px solid var(--teal-clair); border-top-color: var(--teal); border-radius: 50%; animation: tourne .9s linear infinite; }
+@keyframes tourne { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .rond { animation-duration: 3s; } }
+@media (max-width: 640px) { .deux { grid-template-columns: 1fr; } .carte-connexion { padding: 22px 18px; } }
+
+#ecran-config code { background: var(--teal-clair); border-radius: 5px; padding: 1px 5px; font-size: 14px; }
+#ecran-config p { line-height: 1.5; }
+/* Bouton « Se déconnecter » toujours visible dans la barre du haut */
+.btn-deco { display: inline-flex; align-items: center; gap: 6px; margin-right: 8px; padding: 8px 12px; min-height: 40px; border: 1.5px solid currentColor; border-radius: 999px; background: transparent; color: inherit; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; }
+.btn-deco:hover, .btn-deco:focus-visible { background: rgba(127,127,127,.18); }
+@media (max-width: 520px) { .btn-deco-txt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; } .btn-deco { padding: 8px 10px; margin-right: 4px; } }
+/* Fenêtre de déconnexion */
+.dlg-fond { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(20,48,58,.55); }
+.dlg-carte { width: 100%; max-width: 420px; background: #fff; color: var(--encre); border-radius: 16px; padding: 22px; box-shadow: 0 10px 40px rgba(0,0,0,.3); font-family: Lato, "Segoe UI", Arial, sans-serif; }
+.dlg-carte h2 { margin: 0 0 8px; font-size: 20px; color: var(--encre); }
+.dlg-carte p { line-height: 1.45; margin: 0 0 12px; }
+.dlg-case { display: flex; gap: 10px; align-items: flex-start; margin: 0 0 14px; font-weight: 700; cursor: pointer; }
+.dlg-case input { width: 22px; height: 22px; flex: none; margin-top: 2px; }
+.dlg-case small { font-weight: 400; color: var(--gris); }
+.dlg-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.dlg-actions .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 18px; border: 1.5px solid var(--ligne); border-radius: 10px; background: #fff; color: var(--encre); font: inherit; font-weight: 700; cursor: pointer; flex: 1 1 140px; }
+.dlg-actions .btn-principal { width: auto; border: 0; background: var(--teal); color: #fff; }
+.dlg-actions .btn-principal:hover { background: var(--teal-fonce); }

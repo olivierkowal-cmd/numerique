@@ -1,0 +1,53 @@
+/* Écran « Aujourd'hui » : gros boutons, un seul choix principal par écran. */
+.today { max-width: 46rem; margin: 0 auto; display: grid; gap: 1.25rem; }
+.today-coach { display: flex; gap: 1rem; align-items: center; }
+.today-coach-face { font-size: 3rem; line-height: 1; flex: none; min-width: 4rem; text-align: center; }
+.today-title { margin: 0 0 .25rem; font-size: 1.5rem; }
+.today-say { margin: .25rem 0 .5rem; color: var(--text-2); font-size: 1.05rem; }
+.today-go-wrap { display: grid; justify-items: center; gap: .5rem; }
+.today-go { width: 100%; min-height: 7.5rem; display: grid; gap: .25rem; justify-items: center; align-content: center; border-radius: 1.75rem; padding: 1rem 1.25rem; box-shadow: var(--shadow-glow); animation: today-pulse 3s ease-in-out infinite; }
+.today-go-main { font-size: clamp(2rem, 8vw, 3rem); font-weight: 800; line-height: 1.1; }
+.today-go-sub { font-size: 1rem; font-weight: 500; opacity: .92; }
+.today-doc { margin: 0; color: var(--text-muted); font-size: .95rem; }
+@keyframes today-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.015); } }
+.today-tiles { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+.today-tile h2 { font-size: 1.1rem; margin: 0 0 .5rem; }
+.today-tile p { margin: 0 0 .75rem; color: var(--text-2); }
+.today-tile-btn { min-height: 3rem; width: 100%; }
+.today-quests { display: grid; gap: .4rem; }
+.today-quest { display: flex; justify-content: space-between; gap: .5rem; color: var(--text-2); }
+.today-quest.is-done { color: var(--text); font-weight: 600; }
+
+.today-run { max-width: 46rem; margin: 0 auto; display: grid; gap: .75rem; }
+.today-bar { display: flex; gap: .75rem; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.today-steps { list-style: none; margin: 0; padding: 0; display: flex; gap: .5rem; flex: 1; min-width: 12rem; }
+.today-step { flex: 1; display: flex; align-items: center; gap: .4rem; padding: .5rem .6rem; border-radius: 999px; background: var(--surface-2); color: var(--text-muted); font-weight: 600; font-size: .9rem; border: 2px solid transparent; }
+.today-step-dot { display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 50%; background: var(--surface-3); font-size: .8rem; flex: none; }
+.today-step.is-current { color: var(--text); border-color: var(--primary); background: var(--primary-50); }
+.today-step.is-current .today-step-dot { background: var(--primary); color: var(--on-primary, #fff); }
+.today-step.is-done { color: var(--text); }
+.today-step.is-done .today-step-dot { background: var(--mint); color: #fff; }
+[data-theme="dark"] .today-step.is-current { background: var(--surface-3); }
+.today-stop { min-height: 3rem; }
+.today-meta { margin: 0; color: var(--text-muted); font-size: .9rem; }
+.today-inter { text-align: center; display: grid; gap: .75rem; justify-items: center; }
+.today-inter h2, .today-inter p { margin: 0; }
+.today-next { min-height: 4rem; min-width: 14rem; font-size: 1.25rem; }
+.today-end { text-align: center; }
+.today-bilan-list { list-style: none; margin: 1rem 0; padding: 0; display: grid; gap: .5rem; font-size: 1.2rem; font-weight: 600; }
+.today-end-actions { display: grid; gap: .75rem; justify-items: center; }
+@media (max-width: 560px) {
+  .today-coach { flex-direction: column; text-align: center; }
+  .today-step-label { display: none; }
+  .today-step.is-current .today-step-label { display: inline; }
+}
+@media (prefers-reduced-motion: reduce) { .today-go { animation: none; } }
+
+/* Grille « Tous mes outils » */
+.today-tools h2 { font-size: 1.2rem; margin: 0 0 .75rem; }
+.today-tools-grid { display: grid; gap: .75rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (min-width: 640px) { .today-tools-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.today-tool { display: grid; justify-items: center; align-content: center; gap: .35rem; min-height: 6rem; padding: .75rem .5rem; text-align: center; text-decoration: none; color: var(--text); background: var(--surface); border: 1.5px solid var(--border-strong, var(--border)); border-radius: 1.25rem; box-shadow: var(--shadow-1, none); font-weight: 700; font-size: 1.05rem; line-height: 1.2; overflow-wrap: anywhere; }
+.today-tool:hover { background: var(--primary-50); }
+.today-tool:focus-visible { outline: 3px solid var(--focus, var(--primary)); outline-offset: 2px; }
+.today-tool-icon { font-size: 2.2rem; line-height: 1; }

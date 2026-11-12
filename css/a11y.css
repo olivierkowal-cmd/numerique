@@ -1,0 +1,72 @@
+/* Studio a11y : voir js/a11y.js. Variables pilotées par <html data-a11y-*>. */
+html { font-size: calc(100% * var(--a11y-scale, 1)); --sidebar-w: calc(248px * var(--a11y-scale, 1)); }
+
+/* Police lisible + espacement (Atkinson Hyperlegible via CDN, repli système) */
+html[data-a11y-font="dyslexia"] {
+  --font: "Atkinson Hyperlegible", Verdana, "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+  --font-display: var(--font);
+}
+html[data-a11y-font="dyslexia"] body { letter-spacing: .04em; word-spacing: .12em; line-height: 1.85; }
+html[data-a11y-font="dyslexia"] p, html[data-a11y-font="dyslexia"] li { line-height: 1.9; max-width: 70ch; }
+html[data-a11y-font="dyslexia"] h1, html[data-a11y-font="dyslexia"] h2, html[data-a11y-font="dyslexia"] h3 { letter-spacing: .02em; }
+
+/* Contraste renforcé */
+html[data-a11y-contrast="1"] { --text: #000; --text-2: #1a1a1a; --text-muted: #2b2b2b; --border: #4a4a4a; --border-strong: #222; --focus: #0040d0; --primary: #3a24b8; --primary-hover: #2a1890; }
+html[data-a11y-contrast="1"][data-theme="dark"], html.dark[data-a11y-contrast="1"] { --text: #fff; --text-2: #f0f0f0; --text-muted: #e0e0e0; --border: #bbb; --border-strong: #eee; --focus: #ffe04a; }
+html[data-a11y-contrast="1"] .card, html[data-a11y-contrast="1"] .btn, html[data-a11y-contrast="1"] .input, html[data-a11y-contrast="1"] .select, html[data-a11y-contrast="1"] .textarea { border: 2px solid var(--border-strong); }
+html[data-a11y-contrast="1"] :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+@media (prefers-contrast: more) {
+  html:not([data-a11y-contrast="0"]) { --text: #000; --text-2: #111; --text-muted: #222; --border: #444; --border-strong: #222; }
+  html[data-theme="dark"]:not([data-a11y-contrast="0"]) { --text: #fff; --text-2: #f2f2f2; --text-muted: #e6e6e6; --border: #bbb; --border-strong: #eee; }
+  .card, .btn { border: 2px solid var(--border-strong); }
+}
+
+/* Mode simple : grosses cibles tactiles >= 48 px */
+html[data-a11y-simple="1"] .btn, html[data-a11y-simple="1"] .input, html[data-a11y-simple="1"] .select,
+html[data-a11y-simple="1"] .nav-item, html[data-a11y-simple="1"] summary { min-height: 48px; }
+html[data-a11y-simple="1"] .btn { padding: 0 22px; font-size: 1.05rem; }
+html[data-a11y-simple="1"] .chip { min-height: 48px; }
+html[data-a11y-simple="1"] .btn-sm { min-height: 48px; font-size: 1rem; padding: 0 16px; }
+html[data-a11y-simple="1"] .textarea { font-size: 1.05rem; }
+html[data-a11y-simple="1"] input[type="checkbox"], html[data-a11y-simple="1"] input[type="radio"] { width: 24px; height: 24px; }
+html[data-a11y-simple="1"] .nav-item { min-width: 50px; }
+html[data-a11y-simple="1"] .nav-label { max-width: 100%; }
+@media (min-width: 900px) { html[data-a11y-simple="1"] .nav-item { min-width: 72px; } html[data-a11y-simple="1"] .nav-label { max-width: none; } }
+html[data-a11y-simple="1"] .nav-item[hidden] { display: none; }
+.nav-item[hidden] { display: none !important; }
+
+/* Lecture à voix haute */
+.tts-btn {
+  display: inline-grid; place-items: center; min-width: 48px; min-height: 48px; padding: 0; margin-left: 6px;
+  border: 1.5px solid var(--border-strong, #ccc); border-radius: 999px; background: var(--surface, #fff); color: var(--text, #000);
+  font-size: 1.25rem; line-height: 1; cursor: pointer; vertical-align: middle;
+}
+.tts-btn:hover { background: var(--primary-50, #f1efff); }
+.tts-btn.is-on { background: var(--primary, #5a43e0); color: #fff; border-color: transparent; }
+.tts-btn:focus-visible { outline: 3px solid var(--focus, #6c57f2); outline-offset: 2px; }
+.tts-row { display: flex; justify-content: center; margin: 8px 0; }
+.tts-row.tts-left { justify-content: flex-start; }
+.tts-row .tts-btn { margin-left: 0; }
+.tts-bar {
+  position: fixed; z-index: 90; right: 12px; bottom: calc(var(--bottombar-h, 64px) + 12px + env(safe-area-inset-bottom));
+  display: flex; align-items: center; gap: 8px; padding: 8px 12px;
+  background: var(--surface, #fff); color: var(--text, #000); border: 1.5px solid var(--border-strong, #ccc);
+  border-radius: 999px; box-shadow: var(--shadow-3, 0 8px 24px rgba(0,0,0,.2));
+}
+.tts-bar[hidden] { display: none; }
+@media (min-width: 900px) { .tts-bar { bottom: 16px; right: auto; left: calc(var(--sidebar-w, 248px) + 16px); } }
+
+/* Section Réglages */
+.a11y-settings .a11y-row { margin: 12px 0; }
+.a11y-label { display: flex; flex-direction: column; gap: 4px; font-weight: 600; max-width: 380px; }
+.a11y-check { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; min-height: 48px; cursor: pointer; }
+.a11y-check input { width: 24px; height: 24px; }
+.a11y-preview { margin-top: 16px; padding: 14px 16px; border: 2px dashed var(--border-strong, #ccc); border-radius: 12px; background: var(--surface-2, #f4f4f8); }
+.a11y-preview p { margin: 6px 0 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .tts-btn, .tts-bar, .nav-item { transition: none !important; animation: none !important; }
+}
+
+/* Mode simple : l'ordre du menu est celui de la plateforme ; le module courant « hors liste » n'ajoute rien à la barre du bas */
+@media (max-width: 899px) { html[data-a11y-simple="1"] .nav-item[data-extra] { display: none; } }

@@ -1,0 +1,2 @@
+/* GÉNÉRÉ par build/build-web.js : adresses des illustrations (vrais fichiers du dossier images/). */
+window.IMAGES = {"logo":"images/logo-ism.jpg","ch1":"images/chapitre-1-boite-mail.jpg","ch2":"images/chapitre-2-traitement-de-texte.jpg","ch3":"images/chapitre-3-fichiers.jpg","ch4":"images/chapitre-4-hardware.jpg","evals":"images/evaluations.jpg","bonus":"images/bonus.jpg","pegi":"images/pegi-categories.jpg","jeux":"images/jaquettes-jeux-video.jpg"};

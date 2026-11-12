@@ -1,0 +1,101 @@
+/* Studio — confiance et sécurité (dev-trust) : badges, boutons de vérification, consentement, page parents. */
+
+/* Badge « généré par l'IA / automatiquement » */
+.trust-badge {
+  display: inline-flex; align-items: center; gap: 4px; margin: 6px 0;
+  padding: 6px 12px; border-radius: var(--r-pill, 999px);
+  font-size: .85rem; font-weight: 700; line-height: 1.3;
+  border: 1.5px solid transparent;
+}
+.trust-badge-ia { background: var(--sun-soft, #fff3cc); color: var(--sun-ink, #8a5a00); border-color: var(--sun, #ffc83d); }
+.trust-badge-auto { background: var(--surface-2, #f1effa); color: var(--text-2, #4d4872); border-color: var(--border-strong, #cfcae8); }
+
+/* Boutons « Voir dans mon cours » / « Il y a une erreur » */
+.trust-tools-box { margin-top: 16px; }
+.trust-tools { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.trust-btn { min-height: 48px; font-size: .95rem; padding: 0 18px; }
+.trust-flag { border-color: var(--coral, #ff6b6b); color: var(--coral-ink, #b3322f); }
+.trust-flag:hover { background: var(--coral-soft, #ffe9e6); }
+.trust-source {
+  margin-top: 12px; padding: 12px 16px; border-radius: var(--r-md, 16px);
+  background: var(--mint-soft, #dcf8ee); color: var(--text, #1c1838); border: 1.5px solid var(--mint, #2fcf9c);
+}
+.trust-source[hidden] { display: none; }
+.trust-source blockquote { margin: 6px 0 0; font-style: italic; overflow-wrap: anywhere; }
+
+/* Fenêtre de correction */
+.trust-edit { display: grid; gap: 8px; }
+.trust-edit label { font-weight: 700; margin-top: 6px; }
+.trust-edit textarea, .trust-edit input[type="text"], .trust-edit select {
+  width: 100%; min-height: 48px; padding: 10px 12px; font: inherit; color: var(--text);
+  background: var(--surface); border: 2px solid var(--border-strong); border-radius: var(--r-sm, 10px);
+}
+.trust-hint { color: var(--text-muted, #6b668f); font-size: .95rem; margin: 0; }
+
+/* Consentement */
+.trust-consent p { margin: 0 0 10px; line-height: 1.5; }
+.trust-check {
+  display: flex; align-items: flex-start; gap: 12px; margin-top: 14px; padding: 14px;
+  border: 2px solid var(--primary, #5a43e0); border-radius: var(--r-md, 16px); background: var(--primary-50, #f1efff); color: var(--primary-900, #2a2069);
+  font-weight: 700; cursor: pointer;
+}
+[data-theme="dark"] .trust-check { background: var(--surface-2); color: var(--text); }
+.trust-check input { width: 28px; height: 28px; flex: none; accent-color: var(--primary, #5a43e0); }
+.modal .btn.trust-disabled { opacity: .55; }
+
+/* Chat : rappel des règles */
+.trust-chat-note {
+  margin: 0 0 12px; padding: 10px 14px; border-radius: var(--r-md, 16px);
+  background: var(--surface-2, #f1effa); color: var(--text-2, #4d4872); font-size: .95rem;
+}
+
+/* Page « Pour les parents » */
+.trust-parents { max-width: 760px; }
+.trust-lead { font-size: 1.1rem; color: var(--text-2, #4d4872); }
+.trust-section { margin-top: 16px; }
+.trust-section h2 { margin-top: 0; font-size: 1.2rem; }
+.trust-section p, .trust-section li { line-height: 1.55; }
+.trust-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
+
+@media (max-width: 600px) {
+  .trust-tools .btn { flex: 1 1 100%; }
+  .trust-actions .btn { flex: 1 1 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .trust-btn, .trust-check { transition: none !important; }
+}
+
+/* Bandeau permanent « Tu parles à une IA » (chat, écran des agents) */
+.trust-ai-banner {
+  display: block; margin: 6px 0 10px; padding: 4px 10px; border-left: 3px solid var(--sun, #ffc83d);
+  background: var(--surface-2, #f1effa); color: var(--text-2, #4d4872); font-size: .85rem; line-height: 1.4; border-radius: 4px;
+}
+
+/* Avertissement fournisseur (Réglages, consentement) */
+.trust-provider-note { margin: 10px 0; padding: 10px 14px; border-radius: var(--r-md, 16px); font-size: .95rem; line-height: 1.5; border: 2px solid transparent; }
+.trust-provider-note a { font-weight: 700; color: inherit; text-decoration: underline; }
+.trust-provider-warn { background: var(--coral-soft, #ffe9e6); color: var(--coral-ink, #8c1f1c); border-color: var(--coral, #ff6b6b); font-weight: 700; }
+.trust-provider-info { background: var(--surface-2, #f1effa); color: var(--text-2, #4d4872); border-color: var(--border-strong, #cfcae8); }
+[data-theme="dark"] .trust-provider-warn { background: var(--surface-2); color: var(--text); }
+
+/* Consentement en étapes */
+.trust-strong { font-weight: 800; font-size: 1.1rem; }
+.trust-handoff { font-size: 2.4rem; text-align: center; margin: 8px 0; }
+.trust-consent-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; margin-top: 16px; }
+.trust-consent-actions .btn { min-height: 48px; }
+.trust-fields { display: grid; gap: 6px; margin: 10px 0; }
+.trust-fields label, .trust-label { font-weight: 700; margin-top: 6px; display: block; }
+.trust-fields select, .trust-fields input, .trust-consent select {
+  width: 100%; min-height: 48px; padding: 10px 12px; font: inherit; color: var(--text); background: var(--surface); border: 2px solid var(--border-strong); border-radius: var(--r-sm, 10px);
+}
+.trust-consent { max-height: 70vh; overflow-y: auto; }
+
+/* Aide et urgences */
+.trust-help { display: grid; gap: 8px; margin-top: 10px; }
+.trust-help-country ul { margin: 4px 0 0; padding-left: 20px; }
+.trust-help li { line-height: 1.5; margin: 4px 0; }
+.trust-tel { font-weight: 800; font-size: 1.05rem; }
+.trust-help-urgence { margin: 4px 0 0; font-weight: 700; padding: 8px 12px; border-radius: var(--r-sm, 10px); background: var(--coral-soft, #ffe9e6); color: var(--coral-ink, #8c1f1c); }
+[data-theme="dark"] .trust-help-urgence { background: var(--surface-2); color: var(--text); }
+@media (max-width: 600px) { .trust-consent-actions .btn { flex: 1 1 100%; } }
+.chat-mode .trust-ai-banner, .crew-head .trust-ai-banner { margin-top: 4px; }
